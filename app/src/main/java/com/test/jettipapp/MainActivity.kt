@@ -75,8 +75,6 @@ fun MainContent() {
              border = BorderStroke(width = 1.dp, color = Color.LightGray) ) {
         Column() {
             Text(text = "Hello again...")
-
-            Text(text = "Hello again...")
             Text(text = "Hello again...")
         }
     }
