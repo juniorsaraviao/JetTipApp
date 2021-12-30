@@ -102,6 +102,10 @@ fun BillForm( modifier: Modifier = Modifier,
         totalBillState.value.trim().isNotEmpty()
     }
 
+    val splitNumber = remember {
+        mutableStateOf(1)
+    }
+
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Surface( modifier = Modifier
@@ -132,10 +136,18 @@ fun BillForm( modifier: Modifier = Modifier,
                     Row( modifier = Modifier.padding( horizontal = 3.dp ),
                          horizontalArrangement = Arrangement.End ){
                         RoundIconButton( imageVector = Icons.Default.Remove,
-                                         onClick = { /*TODO*/ } )
+                                         onClick = {
+                                             if (splitNumber.value == 1)
+                                                 splitNumber.value = 1
+                                             else splitNumber.value--
+                                         } )
+
+                        Text( text = splitNumber.value.toString(),
+                              modifier = Modifier.align(Alignment.CenterVertically)
+                                                 .padding(start = 9.dp, end = 9.dp) )
 
                         RoundIconButton( imageVector = Icons.Default.Add,
-                            onClick = { /*TODO*/ } )
+                            onClick = { splitNumber.value++ } )
                     }
                 }
             }else{

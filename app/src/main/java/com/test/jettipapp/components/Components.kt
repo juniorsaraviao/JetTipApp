@@ -1,5 +1,6 @@
 package com.test.jettipapp.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -31,7 +32,8 @@ fun InputField( modifier: Modifier = Modifier,
     
     OutlinedTextField( value = valueState.value, 
                        onValueChange = { valueState.value = it },
-                       modifier = modifier.padding(bottom = 10.dp, start = 10.dp, end = 10.dp),
+                       modifier = modifier.padding(bottom = 10.dp, start = 10.dp, end = 10.dp)
+                                          .fillMaxWidth(),
                        label = { Text(text = labelId) },
                        leadingIcon = { Icon( imageVector = Icons.Rounded.AttachMoney,
                                              contentDescription = "Money Icon" ) },
