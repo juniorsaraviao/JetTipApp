@@ -116,6 +116,8 @@ fun BillForm( modifier: Modifier = Modifier,
         mutableStateOf(0f)
     }
 
+    val range = IntRange(1, 100)
+
     TopHeader()
 
     Surface( modifier = Modifier
@@ -157,7 +159,10 @@ fun BillForm( modifier: Modifier = Modifier,
                                                  .padding(start = 9.dp, end = 9.dp) )
 
                         RoundIconButton( imageVector = Icons.Default.Add,
-                            onClick = { splitNumber.value++ } )
+                            onClick = {
+                                if( splitNumber.value < range.last )
+                                    splitNumber.value++
+                            } )
                     }
                 }
 
