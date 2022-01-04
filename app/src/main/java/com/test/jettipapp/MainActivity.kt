@@ -62,6 +62,7 @@ fun MyApp( content: @Composable () -> Unit ) {
 fun TopHeader( totalPerPerson: Double = 134.0 ) {
     Surface( modifier = Modifier
                         .fillMaxWidth()
+                        .padding(15.dp)
                         .height(150.dp)
                         //.clip(shape = RoundedCornerShape(12.dp))
                         .clip(shape = CircleShape.copy(all = CornerSize(12.dp))),
@@ -84,8 +85,10 @@ fun TopHeader( totalPerPerson: Double = 134.0 ) {
 @Composable
 fun MainContent() {
 
-    BillForm() { billAmt ->
-        Log.d("Amt", "MainContent: $billAmt")
+    Column {
+        BillForm() { billAmt ->
+            Log.d("Amt", "MainContent: $billAmt")
+        }
     }
 
 }
@@ -113,6 +116,8 @@ fun BillForm( modifier: Modifier = Modifier,
         mutableStateOf(0f)
     }
 
+    TopHeader()
+
     Surface( modifier = Modifier
                         .padding(2.dp)
                         .fillMaxWidth(),
@@ -131,7 +136,7 @@ fun BillForm( modifier: Modifier = Modifier,
                             keyboardController?.hide()
                         } )
 
-            if(validState){
+//            if(validState){
                 Row( modifier = Modifier.padding(3.dp),
                      horizontalArrangement = Arrangement.Start ){
                     Text( text = "Split",
@@ -172,12 +177,16 @@ fun BillForm( modifier: Modifier = Modifier,
                     Slider( value = sliderPositionState.value, onValueChange = { newVal ->
                         Log.d("Slider", "BillForm: $newVal")
                         sliderPositionState.value = newVal
-                    } )
+                    }, modifier = Modifier.padding( start = 16.dp, end = 16.dp ),
+                    steps = 5,
+                    onValueChangeFinished = {
+                        //Log.d(TAG, "BillForm: a")
+                    })
                 }
 
-            }else{
-                Box() {}
-            }
+//            }else{
+//                Box() {}
+//            }
         }
     }
 }
